@@ -14,10 +14,7 @@ pytorch >= 1.8
 [Link of Dropbox [two models available]](https://www.dropbox.com/t/VfnYWlIK9XtzK367 "Link of Dropbox [two models available]")
 
 **Data Preparation**
-```python
-Please put the CT files in the "data" folder. Please prepare a file list for testing, the format can refer to "train.txt", "val.txt", and "test.txt". Please aware of that all file list should have label column. For testing purpose only, just fill 0 or 1 in the label column, the code will skip the label information in inference phase if the evalPerformance option is False. 
-
-```
+'Please put the CT files in the "data" folder. Please prepare a file list for testing, the format can refer to "train.txt", "val.txt", and "test.txt". Please aware of that all file list should have label column. For testing purpose only, just fill 0 or 1 in the label column, the code will skip the label information in inference phase if the evalPerformance option is False.'
 
 
 **How to Use**
