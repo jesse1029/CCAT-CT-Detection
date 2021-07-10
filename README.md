@@ -1,7 +1,7 @@
 # Convolutional Transformer for CT Scan Classification
-Chih-Chung Hsu [[cchsu@gs.ncku.edu.tw](mailto:cchsu@gs.ncku.edu.tw "cchsu@gs.ncku.edu.tw")]
-Website: https://cchsu.info
-Institute of Data Science, National Cheng Kung University
+- Chih-Chung Hsu [[cchsu@gs.ncku.edu.tw](mailto:cchsu@gs.ncku.edu.tw "cchsu@gs.ncku.edu.tw")]
+- Website: https://cchsu.info
+- Institute of Data Science, National Cheng Kung University
 
 **Requirements**
 Please see the reruirements.txt for details.
