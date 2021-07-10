@@ -1,0 +1,53 @@
+# distributed training
+nodes: 1
+gpus: 1 # I recommend always assigning 1 GPU to 1 node
+nr: 0 # machine nr. in node (0 -- nodes - 1)
+dataparallel: 0 # Use DataParallel instead of DistributedDataParallel
+workers: 1
+
+dataset_dir_test: "data/val/"  # Data root
+test_file: "val.txt"  ## Providing the file list for evalution (format: first col: ct_dit, second col: label). Note that for the testing files where the labels are unavailable, you can just assign any value for second col. 
+
+# train options
+seed: 42 # sacred handles automatic seeding when passed in the config
+backbone: 'resnet50'
+batch_size: 8
+image_size: 256
+crop_size: 224
+marginal: 3
+heads: 0
+L1_depth: 1
+L2_depth: 2
+start_epoch: 0
+epochs: 100
+FRR: 16
+FREQ: 2
+dataset: "CT" # STL10
+pretrain: False 
+test_aug: 1
+max_det: 10 # works only if test_aug=1
+view_interval: 20
+lr: 0.0001
+centerCrop: 0 # [0~100] 0: off, >0 indicates how much percentage of slices will be kept for training
+twoStream: False
+allRandRoate: True
+MultiFREQ:
+singleAug: False
+
+n_features: 1024
+
+# loss options
+optimizer: "Adam" # or LARS (experimental)
+weight_decay: 1.0e-6 # "optimized using LARS [...] and weight decay of 10−6"
+temperature: 0.5 # see appendix B.7.: Optimal temperature under different batch sizes
+
+# reload options
+model_path: "ViTRes50-1024-16-gmlp-im256.pth" # checkpoint name 
+resume: True
+output_path: 'results'
+useBest: True
+evalPerformance: False  ## 
+testMode: 'avg' ## "avg"/"top-k", where k means how many samples to be postive to determine the result
+peakThres: 1
+useFeatMap: -2
+flip: False
