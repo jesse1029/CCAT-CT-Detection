@@ -68,18 +68,14 @@ def main(args):
     model.load_state_dict(torch.load(args.model_path))
         
     model.eval()
-    if not args.evalPerformance:
-        import json
-        fp = open('result.json', 'w')
-        results = {}
+
         
     from tqdm import trange
     if os.path.isdir(args.output_path)==False:
         os.mkdir(args.output_path)
     
-    if args.evalPerformance==False:
       
-        fp1, fp2 = open(os.path.join(args.output_path, f'{args.model_path}-covid.csv'), 'w'), open(os.path.join(args.output_path, f'{args.model_path}-non-covid.csv'), 'w')
+    fp1, fp2 = open(os.path.join(args.output_path, f'{args.model_path}-covid.csv'), 'w'), open(os.path.join(args.output_path, f'{args.model_path}-non-covid.csv'), 'w')
 
     with torch.no_grad():
         preds, labs = [], []
@@ -137,18 +133,17 @@ def main(args):
                     preds.append(torch.argmax(pred,1).cpu().numpy()[0])
                     LOG.info(f'Found a insufficient CT scan in {x["fn"][0]}')
                     
-                   
-            if args.evalPerformance==False:
-#                 LOG.info(f"File {filename[0]} is {result}")
-                if preds[-1]==1:
-                    fp1.write('%s,' % os.path.basename(filename[0]))
-                else:
-                    fp2.write('%s,' % os.path.basename(filename[0]))
-            outfile.append([filename[0], preds[-1]])
+
+            if preds[-1]==1:
+                fp1.write('%s,' % os.path.basename(filename[0]))
+            else:
+                fp2.write('%s,' % os.path.basename(filename[0]))
+                
+            outfile.append([os.path.basename(filename[0]), preds[-1]])
         
         outfile = pd.DataFrame(outfile)
         postfix = 'val' if args.evalPerformance else 'test'
-        outfile.to_csv(f"{args.output_path}/{args.model_path}_{postfix}.csv")
+        outfile.to_csv(f"{args.output_path}/{args.model_path}_{postfix}.csv", index=False)
         if args.evalPerformance:   
             
             preds, labs = np.asarray(preds), np.asarray(labs)

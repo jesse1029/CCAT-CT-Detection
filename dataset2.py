@@ -155,10 +155,12 @@ class dataset_DFD(torch.utils.data.Dataset):
         len1 = len(x)
         
         if len1<self.FRR:
-            x2 = np.zeros((self.FRR, x.shape[1], x.shape[2], x.shape[3]), np.uint8)
+            x2 = np.zeros((self.FRR, x[0].shape[0], x[0].shape[1], x[0].shape[2]), np.uint8)
+            print('make the ct scan has sufficient slices', x2.shape)
             x2[:len(x)] = x
             x2[len(x):] = x[-1]
             x=x2
+            len1 = len(x)
             
             assert len(x)==self.FRR
 

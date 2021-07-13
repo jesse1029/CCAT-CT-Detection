@@ -9,6 +9,7 @@ import torch.distributed as dist
 import torch.multiprocessing as mp
 from torch.nn.parallel import DataParallel
 from torch.nn.parallel import DistributedDataParallel as DDP
+from torch import jit
 
 # TensorBoard
 from torch.utils.tensorboard import SummaryWriter
@@ -35,7 +36,7 @@ for k, v in config.items():
 parser.add_argument('--eval', type=bool, default=True)
 parser.add_argument('--f', type=bool, default=True)
 args = parser.parse_args()
-args.model_path = os.path.join('checkpoint', "ViTRes50-16-gmlp-im256-MF")
+# args.model_path = os.path.join('checkpoint', "ViTRes50-16-gmlp-im256-MF")
 
 
 model = VViT(0, args, mode='test')
@@ -43,10 +44,19 @@ model = VViT(0, args, mode='test')
 model = model.to('cuda')
 
 args.current_epoch = 0
-best_f1 = load_model(args, model, useBest=args.useBest)
-if isinstance(model, torch.nn.DataParallel):
-    model_dict = model.module.state_dict()
-else:
-    model_dict = model.state_dict()
+# best_f1 = load_model(args, model, useBest=args.useBest)
+# if isinstance(model, torch.nn.DataParallel):
+#     model_dict = model.module.state_dict()
+# else:
+#     model_dict = model.state_dict()
     
-torch.save(model_dict, 'ViTRes50-16-gmlp-im256-MF.pth')
+# torch.save(model_dict, 'ViTRes50-16-gmlp-im256-MF.pth')
+model.load_state_dict(torch.load('ViTRes50-16-gmlp-im256-MF.pth'))
+
+data = {}
+data['fn']={}
+data['img'] = {}
+for i in range(args.FRR):
+    data['img'][i] = torch.ones(1, 3, 224, 224)
+net_trace = jit.trace(model, data)
+jit.save(net_trace, 'model.zip')
