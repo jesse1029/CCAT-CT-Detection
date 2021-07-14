@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 **Trained models**
 
-[Link of Dropbox [Three models available]](https://www.dropbox.com/t/9Wnq1oFaOqGrhMlx [Three models available])
+Download it from Dropbox: [Link](https://www.dropbox.com/t/9Wnq1oFaOqGrhMlx "Link").
 
 **Data Preparation**
 
