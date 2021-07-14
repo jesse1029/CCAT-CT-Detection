@@ -55,5 +55,5 @@ Please find your results in "result" folder, where a log file, prediction file (
 
 **Make submission files**
 
-Please run sh test_script.sh and DWCC results first, then you can run python
+Please run sh test_script.sh and [DWCC-Result](https://github.com/jesse1029/Deep-Wilcoxon-signed-rank-test-for-Covid-19-classfication/blob/master/test_inference.ipynb "DWCC-Result"). first, then you can run python
 final_submission.ipynb to find the five submission results.
