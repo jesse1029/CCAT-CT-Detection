@@ -9,7 +9,7 @@ Please see the reruirements.txt for details.
 ```python
 pip install -r requirements.txt
 ```
-	
+
 **Trained models**
 
 [Link of Dropbox [two models available]](https://www.dropbox.com/t/9Wnq1oFaOqGrhMlx [Three models available]")
