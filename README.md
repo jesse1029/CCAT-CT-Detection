@@ -22,7 +22,7 @@ Download it from Dropbox: [Link](https://www.dropbox.com/t/9Wnq1oFaOqGrhMlx "Lin
 
 **Data Preparation**
 
-    Please put the CT files in the "data" folder. Please prepare a file list for testing, the format can refer to "train.txt", "val.txt", and "test.txt". Please aware of that all file list should have label column. For testing purpose only, just fill 0 or 1 in the label column, the code will skip the label information in inference phase if the evalPerformance option is False. 
+Please put the CT files in the "data" folder. Please prepare a file list for testing, the format can refer to "train.txt", "val.txt", and "test.txt". Please aware of that all file list should have label column. For testing purpose only, just fill 0 or 1 in the label column, the code will skip the label information in inference phase if the evalPerformance option is False. 
 
 ------------
 
