@@ -1,22 +1,22 @@
 # Convolutional Transformer for CT Scan Classification
-- Chih-Chung Hsu [[cchsu@gs.ncku.edu.tw](mailto:cchsu@gs.ncku.edu.tw "cchsu@gs.ncku.edu.tw")]
+- Chih-Chung Hsu, Guan-Lin Chen, Mei-Hsuan Wu
+- email: [cchsu@gs.ncku.edu.tw](mailto:cchsu@gs.ncku.edu.tw "cchsu@gs.ncku.edu.tw")
 - Website: https://cchsu.info
 - Institute of Data Science, National Cheng Kung University
 
 **Requirements**
 Please see the reruirements.txt for details.
 ```python
-main requirement:
-pytorch >= 1.8
+pip install -r requirements.txt
 ```
-
+	
 **Trained models**
+
 [Link of Dropbox [two models available]](https://www.dropbox.com/t/9Wnq1oFaOqGrhMlx [Three models available]")
 
 **Data Preparation**
 
-
-`Please put the CT files in the "data" folder. Please prepare a file list for testing, the format can refer to "train.txt", "val.txt", and "test.txt". Please aware of that all file list should have label column. For testing purpose only, just fill 0 or 1 in the label column, the code will skip the label information in inference phase if the evalPerformance option is False. `
+    Please put the CT files in the "data" folder. Please prepare a file list for testing, the format can refer to "train.txt", "val.txt", and "test.txt". Please aware of that all file list should have label column. For testing purpose only, just fill 0 or 1 in the label column, the code will skip the label information in inference phase if the evalPerformance option is False. 
 
 **How to Use**
 If you want to evaluate the performance (having label information), run the script below:
@@ -30,4 +30,9 @@ python test_single.py --dataset_dir_test 'data/val/' --test_file 'val.txt' --max
 ```
 
 **Check Results**
-Please find your results in "result" folder, where a log file, prediction file (in csv) will be automatically generated. 
+Please find your results in "result" folder, where a log file, prediction file (in csv) will be automatically generated.
+
+**Make submission files**
+Please run ```sh test_script.sh``` and DWCC results first, then you can run ```python
+final_submission.ipynb
+``` to find the five submission results.
